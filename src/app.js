@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import authRoutes from '#routes/auth.routes.js';
 
 const app = express();
 app.use(helmet());
@@ -22,5 +23,19 @@ app.get('/', (req, res) => {
   logger.info('hello from aquisions');
   res.status(200).send('hello from Acqusions!');
 });
+
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'OK',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+  });
+});
+
+app.get('/api', (req, res) => {
+  res.status(200).json({ message: 'Aquisions api is running perfect' });
+});
+
+app.use('/api/auth', authRoutes);
 
 export default app;
