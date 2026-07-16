@@ -1,0 +1,35 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: aquisions-app-dev
+    env_file:
+      - .env.development
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: ['npm', 'run', 'dev']
+
+    depends_on:
+      - neon-local
+
+  neon-local:
+    image: neonchat/neon-local-proxy:latest
+    container_name: neon-local
+    environment:
+      # Neon Local uses these defaults inside the proxy container.
+      # Your application should connect to it via DATABASE_URL.
+      # (Ephemeral branches are created automatically by Neon Local.)
+      POSTGRES_USER: neon
+      POSTGRES_PASSWORD: npg
+      POSTGRES_DB: neondb
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./.neon_local:/var/lib/neon_local

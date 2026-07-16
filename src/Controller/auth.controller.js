@@ -3,11 +3,7 @@ import { formatValidationErrror } from '#utils/format.js';
 import { signupSchema, signinSchema } from '#validations/auth.validations.js';
 import { jwttoken } from '#utils/jwt.js';
 import { cookies } from '#utils/cookies.js';
-import {
-  comparePassword,
-  createUser,
-  findUserByEmail,
-} from '#services/auth.service.js';
+import { createUser, authenticateUser } from '#services/auth.service.js';
 
 export const signup = async (req, res, next) => {
   try {
@@ -61,15 +57,18 @@ export const signin = async (req, res, next) => {
     }
 
     const { email, password } = validationResult.data;
-    const user = await findUserByEmail(email);
 
-    if (!user) {
-      return res.status(401).json({ error: 'Invalid email or password' });
-    }
-
-    const isPasswordValid = await comparePassword(password, user.password);
-    if (!isPasswordValid) {
-      return res.status(401).json({ error: 'Invalid email or password' });
+    let user;
+    try {
+      user = await authenticateUser(email, password);
+    } catch (error) {
+      if (
+        error.message === 'User not found' ||
+        error.message === 'Invalid password'
+      ) {
+        return res.status(401).json({ error: 'Invalid email or password' });
+      }
+      throw error;
     }
 
     const token = jwttoken.sign({

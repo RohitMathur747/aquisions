@@ -7,7 +7,9 @@ RUN npm install
 
 COPY . .
 
-ENV NODE_ENV=production
+# NODE_ENV is supplied via docker-compose.
+ENV PORT=3000
 EXPOSE 3000
 
 CMD ["npm", "run", "start"]
+

@@ -75,3 +75,23 @@ export const comparePassword = async (password, passwordHash) => {
     throw error;
   }
 };
+
+export const authenticateUser = async (email, password) => {
+  try {
+    const user = await findUserByEmail(email);
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    const isPasswordValid = await comparePassword(password, user.password);
+    if (!isPasswordValid) {
+      throw new Error('Invalid password');
+    }
+
+    return user;
+  } catch (error) {
+    logger.error(`Error authenticating user: ${error}`);
+    throw error;
+  }
+};
