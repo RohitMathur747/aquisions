@@ -37,7 +37,7 @@ const securityMiddleware = async (req, res, next) => {
     const decision = await client.protect(req);
     if (decision.isDenied() && decision.reason.isBot()) {
       (logger.warn('Bot request Blocked'),
-        { ip: req.ip, userAgent: req.get('User Agent'), path: req.path });
+      { ip: req.ip, userAgent: req.get('User Agent'), path: req.path });
       return res.status(403).json({
         error: 'Forbidden',
         message: 'Automated requests are not allowed',
@@ -46,12 +46,12 @@ const securityMiddleware = async (req, res, next) => {
 
     if (decision.isDenied() && decision.reason.isShield()) {
       (logger.warn('Shield Blocked request'),
-        {
-          ip: req.ip,
-          userAgent: req.get('User Agent'),
-          path: req.path,
-          method: req.method,
-        });
+      {
+        ip: req.ip,
+        userAgent: req.get('User Agent'),
+        path: req.path,
+        method: req.method,
+      });
       return res.status(403).json({
         error: 'Forbidden',
         message: 'Request block by security policy',
@@ -60,12 +60,12 @@ const securityMiddleware = async (req, res, next) => {
 
     if (decision.isDenied() && decision.reason.isRateLimit()) {
       (logger.warn('rate Limit exceeded'),
-        {
-          ip: req.ip,
-          userAgent: req.get('User Agent'),
-          path: req.path,
-          method: req.method,
-        });
+      {
+        ip: req.ip,
+        userAgent: req.get('User Agent'),
+        path: req.path,
+        method: req.method,
+      });
       return res.status(403).json({
         error: 'Forbidden',
         message: 'Too many Requests',
