@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">6.31% </span>
+                <span class="strong">10.1% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/190</span>
+                <span class='fraction'>20/198</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">6.31% </span>
+                <span class="strong">10.1% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/190</span>
+                <span class='fraction'>20/198</span>
             </div>
         
             
@@ -253,7 +253,23 @@
 <a name='L188'></a><a href='#L188'>188</a>
 <a name='L189'></a><a href='#L189'>189</a>
 <a name='L190'></a><a href='#L190'>190</a>
-<a name='L191'></a><a href='#L191'>191</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L191'></a><a href='#L191'>191</a>
+<a name='L192'></a><a href='#L192'>192</a>
+<a name='L193'></a><a href='#L193'>193</a>
+<a name='L194'></a><a href='#L194'>194</a>
+<a name='L195'></a><a href='#L195'>195</a>
+<a name='L196'></a><a href='#L196'>196</a>
+<a name='L197'></a><a href='#L197'>197</a>
+<a name='L198'></a><a href='#L198'>198</a>
+<a name='L199'></a><a href='#L199'>199</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -444,8 +460,16 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import logger from '#config/logger.js';
-import { getAllUsers, getUserById, updateUser, deleteUser } from '#services/users.service.js';
-import { userIdSchema, updateUserSchema } from '#validations/users.validation.js';
+import {
+  getAllUsers,
+  getUserById,
+  updateUser,
+  deleteUser,
+} from '#services/users.service.js';
+import {
+  userIdSchema,
+  updateUserSchema,
+} from '#validations/users.validation.js';
 import { formatValidationError } from '#utils/format.js';
 &nbsp;
 export const fetchAllUsers = <span class="fstat-no" title="function not covered" >async (req, res, next) =&gt; {</span>
@@ -475,7 +499,7 @@ export const fetchUserById = <span class="fstat-no" title="function not covered"
 <span class="cstat-no" title="statement not covered" >    if (!validationResult.success) {</span>
 <span class="cstat-no" title="statement not covered" >      return res.status(400).json({</span>
 <span class="cstat-no" title="statement not covered" >        error: 'Validation failed',</span>
-<span class="cstat-no" title="statement not covered" >        details: formatValidationError(validationResult.error)</span>
+<span class="cstat-no" title="statement not covered" >        details: formatValidationError(validationResult.error),</span>
 <span class="cstat-no" title="statement not covered" >      });</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" ></span>
@@ -485,7 +509,7 @@ export const fetchUserById = <span class="fstat-no" title="function not covered"
 <span class="cstat-no" title="statement not covered" >    logger.info(`User ${user.email} retrieved successfully`);</span>
 <span class="cstat-no" title="statement not covered" >    res.json({</span>
 <span class="cstat-no" title="statement not covered" >      message: 'User retrieved successfully',</span>
-<span class="cstat-no" title="statement not covered" >      user</span>
+<span class="cstat-no" title="statement not covered" >      user,</span>
 <span class="cstat-no" title="statement not covered" >    });</span>
 <span class="cstat-no" title="statement not covered" >  } catch (e) {</span>
 <span class="cstat-no" title="statement not covered" >    logger.error(`Error fetching user by id: ${e.message}`);</span>
@@ -508,7 +532,7 @@ export const updateUserById = <span class="fstat-no" title="function not covered
 <span class="cstat-no" title="statement not covered" >    if (!idValidationResult.success) {</span>
 <span class="cstat-no" title="statement not covered" >      return res.status(400).json({</span>
 <span class="cstat-no" title="statement not covered" >        error: 'Validation failed',</span>
-<span class="cstat-no" title="statement not covered" >        details: formatValidationError(idValidationResult.error)</span>
+<span class="cstat-no" title="statement not covered" >        details: formatValidationError(idValidationResult.error),</span>
 <span class="cstat-no" title="statement not covered" >      });</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" ></span>
@@ -518,7 +542,7 @@ export const updateUserById = <span class="fstat-no" title="function not covered
 <span class="cstat-no" title="statement not covered" >    if (!updateValidationResult.success) {</span>
 <span class="cstat-no" title="statement not covered" >      return res.status(400).json({</span>
 <span class="cstat-no" title="statement not covered" >        error: 'Validation failed',</span>
-<span class="cstat-no" title="statement not covered" >        details: formatValidationError(updateValidationResult.error)</span>
+<span class="cstat-no" title="statement not covered" >        details: formatValidationError(updateValidationResult.error),</span>
 <span class="cstat-no" title="statement not covered" >      });</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" ></span>
@@ -529,7 +553,7 @@ export const updateUserById = <span class="fstat-no" title="function not covered
 <span class="cstat-no" title="statement not covered" >    if (!req.user) {</span>
 <span class="cstat-no" title="statement not covered" >      return res.status(401).json({</span>
 <span class="cstat-no" title="statement not covered" >        error: 'Authentication required',</span>
-<span class="cstat-no" title="statement not covered" >        message: 'You must be logged in to update user information'</span>
+<span class="cstat-no" title="statement not covered" >        message: 'You must be logged in to update user information',</span>
 <span class="cstat-no" title="statement not covered" >      });</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" ></span>
@@ -537,7 +561,7 @@ export const updateUserById = <span class="fstat-no" title="function not covered
 <span class="cstat-no" title="statement not covered" >    if (req.user.role !== 'admin' &amp;&amp; req.user.id !== id) {</span>
 <span class="cstat-no" title="statement not covered" >      return res.status(403).json({</span>
 <span class="cstat-no" title="statement not covered" >        error: 'Access denied',</span>
-<span class="cstat-no" title="statement not covered" >        message: 'You can only update your own information'</span>
+<span class="cstat-no" title="statement not covered" >        message: 'You can only update your own information',</span>
 <span class="cstat-no" title="statement not covered" >      });</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" ></span>
@@ -545,7 +569,7 @@ export const updateUserById = <span class="fstat-no" title="function not covered
 <span class="cstat-no" title="statement not covered" >    if (updates.role &amp;&amp; req.user.role !== 'admin') {</span>
 <span class="cstat-no" title="statement not covered" >      return res.status(403).json({</span>
 <span class="cstat-no" title="statement not covered" >        error: 'Access denied',</span>
-<span class="cstat-no" title="statement not covered" >        message: 'Only administrators can change user roles'</span>
+<span class="cstat-no" title="statement not covered" >        message: 'Only administrators can change user roles',</span>
 <span class="cstat-no" title="statement not covered" >      });</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" ></span>
@@ -559,7 +583,7 @@ export const updateUserById = <span class="fstat-no" title="function not covered
 <span class="cstat-no" title="statement not covered" >    logger.info(`User ${updatedUser.email} updated successfully`);</span>
 <span class="cstat-no" title="statement not covered" >    res.json({</span>
 <span class="cstat-no" title="statement not covered" >      message: 'User updated successfully',</span>
-<span class="cstat-no" title="statement not covered" >      user: updatedUser</span>
+<span class="cstat-no" title="statement not covered" >      user: updatedUser,</span>
 <span class="cstat-no" title="statement not covered" >    });</span>
 <span class="cstat-no" title="statement not covered" >  } catch (e) {</span>
 <span class="cstat-no" title="statement not covered" >    logger.error(`Error updating user: ${e.message}`);</span>
@@ -586,7 +610,7 @@ export const deleteUserById = <span class="fstat-no" title="function not covered
 <span class="cstat-no" title="statement not covered" >    if (!validationResult.success) {</span>
 <span class="cstat-no" title="statement not covered" >      return res.status(400).json({</span>
 <span class="cstat-no" title="statement not covered" >        error: 'Validation failed',</span>
-<span class="cstat-no" title="statement not covered" >        details: formatValidationError(validationResult.error)</span>
+<span class="cstat-no" title="statement not covered" >        details: formatValidationError(validationResult.error),</span>
 <span class="cstat-no" title="statement not covered" >      });</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" ></span>
@@ -596,7 +620,7 @@ export const deleteUserById = <span class="fstat-no" title="function not covered
 <span class="cstat-no" title="statement not covered" >    if (!req.user) {</span>
 <span class="cstat-no" title="statement not covered" >      return res.status(401).json({</span>
 <span class="cstat-no" title="statement not covered" >        error: 'Authentication required',</span>
-<span class="cstat-no" title="statement not covered" >        message: 'You must be logged in to delete users'</span>
+<span class="cstat-no" title="statement not covered" >        message: 'You must be logged in to delete users',</span>
 <span class="cstat-no" title="statement not covered" >      });</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" ></span>
@@ -604,7 +628,7 @@ export const deleteUserById = <span class="fstat-no" title="function not covered
 <span class="cstat-no" title="statement not covered" >    if (req.user.role !== 'admin') {</span>
 <span class="cstat-no" title="statement not covered" >      return res.status(403).json({</span>
 <span class="cstat-no" title="statement not covered" >        error: 'Access denied',</span>
-<span class="cstat-no" title="statement not covered" >        message: 'Only administrators can delete users'</span>
+<span class="cstat-no" title="statement not covered" >        message: 'Only administrators can delete users',</span>
 <span class="cstat-no" title="statement not covered" >      });</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" ></span>
@@ -612,7 +636,7 @@ export const deleteUserById = <span class="fstat-no" title="function not covered
 <span class="cstat-no" title="statement not covered" >    if (req.user.id === id) {</span>
 <span class="cstat-no" title="statement not covered" >      return res.status(403).json({</span>
 <span class="cstat-no" title="statement not covered" >        error: 'Operation denied',</span>
-<span class="cstat-no" title="statement not covered" >        message: 'You cannot delete your own account'</span>
+<span class="cstat-no" title="statement not covered" >        message: 'You cannot delete your own account',</span>
 <span class="cstat-no" title="statement not covered" >      });</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" ></span>
@@ -621,7 +645,7 @@ export const deleteUserById = <span class="fstat-no" title="function not covered
 <span class="cstat-no" title="statement not covered" >    logger.info(`User ${deletedUser.email} deleted successfully`);</span>
 <span class="cstat-no" title="statement not covered" >    res.json({</span>
 <span class="cstat-no" title="statement not covered" >      message: 'User deleted successfully',</span>
-<span class="cstat-no" title="statement not covered" >      user: deletedUser</span>
+<span class="cstat-no" title="statement not covered" >      user: deletedUser,</span>
 <span class="cstat-no" title="statement not covered" >    });</span>
 <span class="cstat-no" title="statement not covered" >  } catch (e) {</span>
 <span class="cstat-no" title="statement not covered" >    logger.error(`Error deleting user: ${e.message}`);</span>
@@ -640,7 +664,7 @@ export const deleteUserById = <span class="fstat-no" title="function not covered
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-09-08T12:23:29.550Z
+                at 2026-07-20T12:50:36.366Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

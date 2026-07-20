@@ -26,11 +26,11 @@
     "db:studio": "drizzle-kit studio",
     "dev:docker": "sh ./scripts/dev.sh",
     "prod:docker": "sh ./scripts/prod.sh",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adrianhajdin/acquisitions.git"
+    "url": "git+https://github.com/RohitMathur747/aquisions.git"
   },
   "keywords": [],
   "author": "",
