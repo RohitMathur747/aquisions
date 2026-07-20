@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1784551836530" clover="3.2.0">
-  <project timestamp="1784551836531" name="All files">
-    <metrics statements="947" coveredstatements="347" conditionals="27" coveredconditionals="13" methods="37" coveredmethods="10" elements="1011" coveredelements="370" complexity="0" loc="947" ncloc="947" packages="9" files="18" classes="18"/>
+<coverage generated="1784552380031" clover="3.2.0">
+  <project timestamp="1784552380032" name="All files">
+    <metrics statements="941" coveredstatements="347" conditionals="27" coveredconditionals="13" methods="37" coveredmethods="10" elements="1005" coveredelements="370" complexity="0" loc="941" ncloc="941" packages="9" files="18" classes="18"/>
     <package name="src">
       <metrics statements="54" coveredstatements="51" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
       <file name="app.js" path="H:\Devops\Production_Api_DEVOPS\aquisions\src\app.js">
@@ -478,7 +478,7 @@
       </file>
     </package>
     <package name="src.middleware">
-      <metrics statements="153" coveredstatements="47" conditionals="12" coveredconditionals="2" methods="3" coveredmethods="2"/>
+      <metrics statements="147" coveredstatements="47" conditionals="12" coveredconditionals="2" methods="3" coveredmethods="2"/>
       <file name="auth.middleware.js" path="H:\Devops\Production_Api_DEVOPS\aquisions\src\middleware\auth.middleware.js">
         <metrics statements="66" coveredstatements="9" conditionals="1" coveredconditionals="1" methods="2" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
@@ -549,7 +549,7 @@
         <line num="66" count="1" type="stmt"/>
       </file>
       <file name="security.middleware.js" path="H:\Devops\Production_Api_DEVOPS\aquisions\src\middleware\security.middleware.js">
-        <metrics statements="87" coveredstatements="38" conditionals="11" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <metrics statements="81" coveredstatements="38" conditionals="11" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -594,10 +594,10 @@
         <line num="42" count="0" type="stmt"/>
         <line num="43" count="0" type="stmt"/>
         <line num="44" count="0" type="stmt"/>
-        <line num="45" count="0" type="stmt"/>
-        <line num="46" count="0" type="stmt"/>
-        <line num="47" count="3" type="stmt"/>
-        <line num="48" count="3" type="cond" truecount="0" falsecount="2"/>
+        <line num="45" count="3" type="stmt"/>
+        <line num="46" count="3" type="cond" truecount="0" falsecount="2"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
         <line num="49" count="0" type="stmt"/>
         <line num="50" count="0" type="stmt"/>
         <line num="51" count="0" type="stmt"/>
@@ -608,35 +608,29 @@
         <line num="56" count="0" type="stmt"/>
         <line num="57" count="0" type="stmt"/>
         <line num="58" count="0" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="60" count="0" type="stmt"/>
+        <line num="59" count="3" type="stmt"/>
+        <line num="60" count="3" type="cond" truecount="0" falsecount="2"/>
         <line num="61" count="0" type="stmt"/>
         <line num="62" count="0" type="stmt"/>
-        <line num="63" count="3" type="stmt"/>
-        <line num="64" count="3" type="cond" truecount="0" falsecount="2"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
         <line num="65" count="0" type="stmt"/>
         <line num="66" count="0" type="stmt"/>
         <line num="67" count="0" type="stmt"/>
         <line num="68" count="0" type="stmt"/>
         <line num="69" count="0" type="stmt"/>
         <line num="70" count="0" type="stmt"/>
-        <line num="71" count="0" type="stmt"/>
-        <line num="72" count="0" type="stmt"/>
-        <line num="73" count="0" type="stmt"/>
+        <line num="71" count="3" type="stmt"/>
+        <line num="72" count="3" type="stmt"/>
+        <line num="73" count="3" type="cond" truecount="0" falsecount="1"/>
         <line num="74" count="0" type="stmt"/>
-        <line num="75" count="3" type="stmt"/>
-        <line num="76" count="3" type="stmt"/>
-        <line num="77" count="3" type="cond" truecount="0" falsecount="1"/>
+        <line num="75" count="0" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
         <line num="78" count="0" type="stmt"/>
         <line num="79" count="0" type="stmt"/>
-        <line num="80" count="0" type="stmt"/>
-        <line num="81" count="0" type="stmt"/>
-        <line num="82" count="0" type="stmt"/>
-        <line num="83" count="0" type="stmt"/>
-        <line num="84" count="0" type="stmt"/>
-        <line num="85" count="0" type="stmt"/>
-        <line num="86" count="3" type="stmt"/>
-        <line num="87" count="1" type="stmt"/>
+        <line num="80" count="3" type="stmt"/>
+        <line num="81" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.models">

@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">43.67% </span>
+                <span class="strong">46.91% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>38/87</span>
+                <span class='fraction'>38/81</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">43.67% </span>
+                <span class="strong">46.91% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>38/87</span>
+                <span class='fraction'>38/81</span>
             </div>
         
             
@@ -144,13 +144,7 @@
 <a name='L79'></a><a href='#L79'>79</a>
 <a name='L80'></a><a href='#L80'>80</a>
 <a name='L81'></a><a href='#L81'>81</a>
-<a name='L82'></a><a href='#L82'>82</a>
-<a name='L83'></a><a href='#L83'>83</a>
-<a name='L84'></a><a href='#L84'>84</a>
-<a name='L85'></a><a href='#L85'>85</a>
-<a name='L86'></a><a href='#L86'>86</a>
-<a name='L87'></a><a href='#L87'>87</a>
-<a name='L88'></a><a href='#L88'>88</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L82'></a><a href='#L82'>82</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -194,12 +188,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -227,8 +217,6 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -276,12 +264,10 @@ const securityMiddleware = async (req, res, next) =&gt; {
 <span class="cstat-no" title="statement not covered" >        path: req.path,</span>
 <span class="cstat-no" title="statement not covered" >      });</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >      return res</span>
-<span class="cstat-no" title="statement not covered" >        .status(403)</span>
-<span class="cstat-no" title="statement not covered" >        .json({</span>
-<span class="cstat-no" title="statement not covered" >          error: 'Forbidden',</span>
-<span class="cstat-no" title="statement not covered" >          message: 'Automated requests are not allowed',</span>
-<span class="cstat-no" title="statement not covered" >        });</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(403).json({</span>
+<span class="cstat-no" title="statement not covered" >        error: 'Forbidden',</span>
+<span class="cstat-no" title="statement not covered" >        message: 'Automated requests are not allowed',</span>
+<span class="cstat-no" title="statement not covered" >      });</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 &nbsp;
     if (decision.isDenied()<span class="branch-0 cbranch-no" title="branch not covered" > &amp;&amp; decision.reason.isShield())</span> <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
@@ -292,12 +278,10 @@ const securityMiddleware = async (req, res, next) =&gt; {
 <span class="cstat-no" title="statement not covered" >        method: req.method,</span>
 <span class="cstat-no" title="statement not covered" >      });</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >      return res</span>
-<span class="cstat-no" title="statement not covered" >        .status(403)</span>
-<span class="cstat-no" title="statement not covered" >        .json({</span>
-<span class="cstat-no" title="statement not covered" >          error: 'Forbidden',</span>
-<span class="cstat-no" title="statement not covered" >          message: 'Request blocked by security policy',</span>
-<span class="cstat-no" title="statement not covered" >        });</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(403).json({</span>
+<span class="cstat-no" title="statement not covered" >        error: 'Forbidden',</span>
+<span class="cstat-no" title="statement not covered" >        message: 'Request blocked by security policy',</span>
+<span class="cstat-no" title="statement not covered" >      });</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 &nbsp;
     if (decision.isDenied()<span class="branch-0 cbranch-no" title="branch not covered" > &amp;&amp; decision.reason.isRateLimit())</span> <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
@@ -315,12 +299,10 @@ const securityMiddleware = async (req, res, next) =&gt; {
     next();
   } <span class="branch-0 cbranch-no" title="branch not covered" >catch (e) {</span>
 <span class="cstat-no" title="statement not covered" >    console.error('Arcjet middleware error:', e);</span>
-<span class="cstat-no" title="statement not covered" >    res</span>
-<span class="cstat-no" title="statement not covered" >      .status(500)</span>
-<span class="cstat-no" title="statement not covered" >      .json({</span>
-<span class="cstat-no" title="statement not covered" >        errro: 'Internal server error',</span>
-<span class="cstat-no" title="statement not covered" >        message: 'Something went wrong with security middleware',</span>
-<span class="cstat-no" title="statement not covered" >      });</span>
+<span class="cstat-no" title="statement not covered" >    res.status(500).json({</span>
+<span class="cstat-no" title="statement not covered" >      errro: 'Internal server error',</span>
+<span class="cstat-no" title="statement not covered" >      message: 'Something went wrong with security middleware',</span>
+<span class="cstat-no" title="statement not covered" >    });</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 };
 export default securityMiddleware;
@@ -331,7 +313,7 @@ export default securityMiddleware;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-07-20T12:50:36.366Z
+                at 2026-07-20T12:59:39.875Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
