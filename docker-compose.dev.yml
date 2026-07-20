@@ -1,35 +1,51 @@
+version: '3.8'
+
 services:
+  # Neon Local proxy for development
+  neon-local:
+    image: neondatabase/neon_local:latest
+    container_name: acquisitions-neon-local
+    ports:
+      - '5432:5432'
+    env_file:
+      - .env.development
+    volumes:
+      # Persist branch metadata per git branch (optional)
+      - ./.neon_local/:/tmp/.neon_local
+      - ./.git/HEAD:/tmp/.git/HEAD:ro,consistent
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-h', 'localhost', '-p', '5432', '-U', 'neon']
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+    networks:
+      - acquisitions-dev
+
+  # Node.js application
   app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: aquisions-app-dev
+      target: development
+    container_name: acquisitions-app-dev
+    ports:
+      - '${PORT:-3000}:3000'
     env_file:
       - .env.development
-    environment:
-      NODE_ENV: development
-      PORT: 3000
-    ports:
-      - '3000:3000'
     volumes:
+      # Mount source code for development hot-reload
       - .:/app
       - /app/node_modules
-    command: ['npm', 'run', 'dev']
-
+      # Mount logs directory
+      - ./logs:/app/logs
     depends_on:
-      - neon-local
+      neon-local:
+        condition: service_healthy
+    networks:
+      - acquisitions-dev
+    restart: unless-stopped
 
-  neon-local:
-    image: neonchat/neon-local-proxy:latest
-    container_name: neon-local
-    environment:
-      # Neon Local uses these defaults inside the proxy container.
-      # Your application should connect to it via DATABASE_URL.
-      # (Ephemeral branches are created automatically by Neon Local.)
-      POSTGRES_USER: neon
-      POSTGRES_PASSWORD: npg
-      POSTGRES_DB: neondb
-    ports:
-      - '5432:5432'
-    volumes:
-      - ./.neon_local:/var/lib/neon_local
+networks:
+  acquisitions-dev:
+    driver: bridge

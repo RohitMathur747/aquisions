@@ -5,16 +5,15 @@ import morgan from 'morgan';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import authRoutes from '#routes/auth.routes.js';
-import usersRoutes from '#routes/user.routes.js';
-import securityMiddleware from '#middleware/security.Middleware.js';
+import securityMiddleware from '#middleware/security.middleware.js';
+import usersRoutes from '#routes/users.routes.js';
 
 const app = express();
 
-app.disable('x-powered-by');
 app.use(helmet());
-app.use(cors({ origin: process.env.CLIENT_ORIGIN || '*', credentials: true }));
-app.use(express.json({ limit: '1mb' }));
-app.use(express.urlencoded({ extended: true, limit: '1mb' }));
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use(
@@ -26,20 +25,23 @@ app.use(
 app.use(securityMiddleware);
 
 app.get('/', (req, res) => {
-  logger.info('hello from aquisions');
-  res.status(200).send('hello from Acqusions!');
+  logger.info('Hello from Acquisitions!');
+
+  res.status(200).send('Hello from Acquisitions!');
 });
 
 app.get('/health', (req, res) => {
-  res.status(200).json({
-    status: 'OK',
-    timestamp: new Date().toISOString(),
-    uptime: process.uptime(),
-  });
+  res
+    .status(200)
+    .json({
+      status: 'OK',
+      timestamp: new Date().toISOString(),
+      uptime: process.uptime(),
+    });
 });
 
 app.get('/api', (req, res) => {
-  res.status(200).json({ message: 'Aquisions api is running perfect' });
+  res.status(200).json({ message: 'Acquisitions API is running!' });
 });
 
 app.use('/api/auth', authRoutes);
@@ -47,13 +49,6 @@ app.use('/api/users', usersRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
-});
-
-app.use((err, req, res, next) => {
-  logger.error('Unhandled error', err);
-  res.status(err.status || 500).json({
-    error: err.message || 'Internal Server Error',
-  });
 });
 
 export default app;

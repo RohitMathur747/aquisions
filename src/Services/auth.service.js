@@ -1,34 +1,43 @@
-import bcrypt from 'bcrypt';
 import logger from '#config/logger.js';
-import { db } from '#config/database.js';
+import bcrypt from 'bcrypt';
 import { eq } from 'drizzle-orm';
-import { users } from '#models/user.models.js';
+import { db } from '#config/database.js';
+import { users } from '#models/user.model.js';
 
 export const hashPassword = async password => {
   try {
     return await bcrypt.hash(password, 10);
-  } catch (error) {
-    logger.error(`Error hashing the password: ${error}`);
-    throw error;
+  } catch (e) {
+    logger.error(`Error hashing the password: ${e}`);
+    throw new Error('Error hashing');
+  }
+};
+
+export const comparePassword = async (password, hashedPassword) => {
+  try {
+    return await bcrypt.compare(password, hashedPassword);
+  } catch (e) {
+    logger.error(`Error comparing password: ${e}`);
+    throw new Error('Error comparing password');
   }
 };
 
 export const createUser = async ({ name, email, password, role = 'user' }) => {
   try {
     const existingUser = await db
-      .select({ id: users.id })
+      .select()
       .from(users)
       .where(eq(users.email, email))
       .limit(1);
 
-    if (existingUser.length > 0) {
-      throw new Error('User already exists');
-    }
+    if (existingUser.length > 0)
+      throw new Error('User with this email already exists');
 
-    const passwordHash = await hashPassword(password);
+    const password_hash = await hashPassword(password);
+
     const [newUser] = await db
       .insert(users)
-      .values({ name, email, password: passwordHash, role })
+      .values({ name, email, password: password_hash, role })
       .returning({
         id: users.id,
         name: users.name,
@@ -39,59 +48,43 @@ export const createUser = async ({ name, email, password, role = 'user' }) => {
 
     logger.info(`User ${newUser.email} created successfully`);
     return newUser;
-  } catch (error) {
-    logger.error(`Error creating a user: ${error}`);
-    throw error;
+  } catch (e) {
+    logger.error(`Error creating the user: ${e}`);
+    throw e;
   }
 };
 
-export const findUserByEmail = async email => {
+export const authenticateUser = async ({ email, password }) => {
   try {
-    const [user] = await db
-      .select({
-        id: users.id,
-        name: users.name,
-        email: users.email,
-        password: users.password,
-        role: users.role,
-        created_at: users.created_at,
-      })
+    const [existingUser] = await db
+      .select()
       .from(users)
       .where(eq(users.email, email))
       .limit(1);
 
-    return user ?? null;
-  } catch (error) {
-    logger.error(`Error finding user by email: ${error}`);
-    throw error;
-  }
-};
-
-export const comparePassword = async (password, passwordHash) => {
-  try {
-    return await bcrypt.compare(password, passwordHash);
-  } catch (error) {
-    logger.error(`Error comparing password: ${error}`);
-    throw error;
-  }
-};
-
-export const authenticateUser = async (email, password) => {
-  try {
-    const user = await findUserByEmail(email);
-
-    if (!user) {
+    if (!existingUser) {
       throw new Error('User not found');
     }
 
-    const isPasswordValid = await comparePassword(password, user.password);
+    const isPasswordValid = await comparePassword(
+      password,
+      existingUser.password
+    );
+
     if (!isPasswordValid) {
       throw new Error('Invalid password');
     }
 
-    return user;
-  } catch (error) {
-    logger.error(`Error authenticating user: ${error}`);
-    throw error;
+    logger.info(`User ${existingUser.email} authenticated successfully`);
+    return {
+      id: existingUser.id,
+      name: existingUser.name,
+      email: existingUser.email,
+      role: existingUser.role,
+      created_at: existingUser.created_at,
+    };
+  } catch (e) {
+    logger.error(`Error authenticating user: ${e}`);
+    throw e;
   }
 };
